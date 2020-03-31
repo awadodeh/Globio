@@ -4,21 +4,21 @@ Globio Inc.
 This is system design for people directory.
 **/
 
-entity Group {
+entity UserGroup {
 	// unique universal groupID
 	groupID String,
     groupName String,
     groupDescription String,
     groupOwner String,
-    lastUpdated Date
+    lastUpdated String
     //contact Contact,
     //settings Setting,
     //members Person,
-    //parentGroup Group
+    //parentGroup UserGroup
 }
 
 // A person is associated with:
-// Group, Location, Name, Department
+// UserGroup, Location, Name, Department
 entity Person {
     email String,
     phoneNumber String,
@@ -61,25 +61,25 @@ enum Language {
 }
 
 relationship OneToMany {
-	Person{contact} to Group
+	Person{contact} to UserGroup
 }
 
 relationship OneToOne {
 	Person{location} to Location,
     Person{department} to Department,
     Person{contact} to Contact,
-    Person{name} to Name,
+    Person{name} to Name
 }
 
 
 relationship OneToMany {
-	Group{members} to Person
+	UserGroup{members} to Person
 }
 
 relationship OneToOne {
-	Group{contact} to Contact,
-    Group{setting} to Setting,
-    Group{parent} to Group
+	UserGroup{contact} to Contact,
+    UserGroup{setting} to Setting,
+    UserGroup{parent} to UserGroup
 }
 
 relationship OneToOne {
@@ -88,13 +88,7 @@ relationship OneToOne {
 
 
 // Set pagination options
-paginate Group, Person with infinite-scroll
-paginate Job with pagination
-
-// Use Data Transfert Objects (DTO)
-// dto * with mapstruct
+paginate UserGroup, Person with infinite-scroll
 
 // Set service options to all except few
 service all with serviceImpl
-
-

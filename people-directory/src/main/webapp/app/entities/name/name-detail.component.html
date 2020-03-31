@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="name">
+            <h2><span jhiTranslate="peopledirectoryApp.name.detail.title">Name</span> {{ name.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="peopledirectoryApp.name.firstName">First Name</span></dt>
+                <dd>
+                    <span>{{ name.firstName }}</span>
+                </dd>
+                <dt><span jhiTranslate="peopledirectoryApp.name.lastName">Last Name</span></dt>
+                <dd>
+                    <span>{{ name.lastName }}</span>
+                </dd>
+                <dt><span jhiTranslate="peopledirectoryApp.name.middleName">Middle Name</span></dt>
+                <dd>
+                    <span>{{ name.middleName }}</span>
+                </dd>
+                <dt><span jhiTranslate="peopledirectoryApp.name.preferedName">Prefered Name</span></dt>
+                <dd>
+                    <span>{{ name.preferedName }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/name', name.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,95 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="peopledirectoryApp.person.home.title">People</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-person" [routerLink]="['/person/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="peopledirectoryApp.person.home.createLabel">
+            Create a new Person
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="people?.length === 0">
+        <span jhiTranslate="peopledirectoryApp.person.home.notFound">No people found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="people?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="email"><span jhiTranslate="peopledirectoryApp.person.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="phoneNumber"><span jhiTranslate="peopledirectoryApp.person.phoneNumber">Phone Number</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="image"><span jhiTranslate="peopledirectoryApp.person.image">Image</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="location.id"><span jhiTranslate="peopledirectoryApp.person.location">Location</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="department.id"><span jhiTranslate="peopledirectoryApp.person.department">Department</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="contact.id"><span jhiTranslate="peopledirectoryApp.person.contact">Contact</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name.id"><span jhiTranslate="peopledirectoryApp.person.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="userGroup.id"><span jhiTranslate="peopledirectoryApp.person.userGroup">User Group</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                <tr *ngFor="let person of people ;trackBy: trackId">
+                    <td><a [routerLink]="['/person', person.id, 'view']">{{ person.id }}</a></td>
+                    <td>{{ person.email }}</td>
+                    <td>{{ person.phoneNumber }}</td>
+                    <td>{{ person.image }}</td>
+                    <td>
+                        <div *ngIf="person.location">
+                            <a [routerLink]="['/location', person.location?.id, 'view']" >{{ person.location?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="person.department">
+                            <a [routerLink]="['/department', person.department?.id, 'view']" >{{ person.department?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="person.contact">
+                            <a [routerLink]="['/contact', person.contact?.id, 'view']" >{{ person.contact?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="person.name">
+                            <a [routerLink]="['/name', person.name?.id, 'view']" >{{ person.name?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="person.userGroup">
+                            <a [routerLink]="['/user-group', person.userGroup?.id, 'view']" >{{ person.userGroup?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/person', person.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/person', person.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(person)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

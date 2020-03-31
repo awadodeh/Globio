@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="person">
+            <h2><span jhiTranslate="peopledirectoryApp.person.detail.title">Person</span> {{ person.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="peopledirectoryApp.person.email">Email</span></dt>
+                <dd>
+                    <span>{{ person.email }}</span>
+                </dd>
+                <dt><span jhiTranslate="peopledirectoryApp.person.phoneNumber">Phone Number</span></dt>
+                <dd>
+                    <span>{{ person.phoneNumber }}</span>
+                </dd>
+                <dt><span jhiTranslate="peopledirectoryApp.person.image">Image</span></dt>
+                <dd>
+                    <span>{{ person.image }}</span>
+                </dd>
+                <dt><span jhiTranslate="peopledirectoryApp.person.location">Location</span></dt>
+                <dd>
+                    <div *ngIf="person.location">
+                        <a [routerLink]="['/location', person.location?.id, 'view']">{{ person.location?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="peopledirectoryApp.person.department">Department</span></dt>
+                <dd>
+                    <div *ngIf="person.department">
+                        <a [routerLink]="['/department', person.department?.id, 'view']">{{ person.department?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="peopledirectoryApp.person.contact">Contact</span></dt>
+                <dd>
+                    <div *ngIf="person.contact">
+                        <a [routerLink]="['/contact', person.contact?.id, 'view']">{{ person.contact?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="peopledirectoryApp.person.name">Name</span></dt>
+                <dd>
+                    <div *ngIf="person.name">
+                        <a [routerLink]="['/name', person.name?.id, 'view']">{{ person.name?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="peopledirectoryApp.person.userGroup">User Group</span></dt>
+                <dd>
+                    <div *ngIf="person.userGroup">
+                        <a [routerLink]="['/user-group', person.userGroup?.id, 'view']">{{ person.userGroup?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/person', person.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

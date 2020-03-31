@@ -1,0 +1,75 @@
+{
+    "name": "Person",
+    "fields": [
+        {
+            "fieldName": "email",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phoneNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "image",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "location",
+            "otherEntityRelationshipName": "person",
+            "relationshipName": "location",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "department",
+            "otherEntityRelationshipName": "person",
+            "relationshipName": "department",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "contact",
+            "otherEntityRelationshipName": "person",
+            "relationshipName": "contact",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "name",
+            "otherEntityRelationshipName": "person",
+            "relationshipName": "name",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "userGroup",
+            "otherEntityRelationshipName": "person",
+            "relationshipName": "contact"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "userGroup",
+            "otherEntityRelationshipName": "members",
+            "relationshipName": "userGroup",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200331010100",
+    "entityTableName": "person",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

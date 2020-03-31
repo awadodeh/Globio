@@ -1,0 +1,76 @@
+{
+    "name": "UserGroup",
+    "fields": [
+        {
+            "fieldName": "groupID",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "groupName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "groupDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "groupOwner",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastUpdated",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "contact",
+            "otherEntityRelationshipName": "userGroup",
+            "relationshipName": "contact",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "setting",
+            "otherEntityRelationshipName": "userGroup",
+            "relationshipName": "setting",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "userGroup",
+            "otherEntityRelationshipName": "userGroup",
+            "relationshipName": "parent",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "person",
+            "otherEntityRelationshipName": "userGroup",
+            "relationshipName": "members"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "person",
+            "otherEntityRelationshipName": "contact",
+            "relationshipName": "person",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200331010000",
+    "javadoc": "Globio Inc.\\n\\nThis is system design for people directory.",
+    "entityTableName": "user_group",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

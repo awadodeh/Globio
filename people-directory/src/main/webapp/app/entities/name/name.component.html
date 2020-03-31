@@ -1,0 +1,67 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="peopledirectoryApp.name.home.title">Names</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-name" [routerLink]="['/name/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="peopledirectoryApp.name.home.createLabel">
+            Create a new Name
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="names?.length === 0">
+        <span jhiTranslate="peopledirectoryApp.name.home.notFound">No names found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="names?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="peopledirectoryApp.name.firstName">First Name</span></th>
+                    <th scope="col" ><span jhiTranslate="peopledirectoryApp.name.lastName">Last Name</span></th>
+                    <th scope="col" ><span jhiTranslate="peopledirectoryApp.name.middleName">Middle Name</span></th>
+                    <th scope="col" ><span jhiTranslate="peopledirectoryApp.name.preferedName">Prefered Name</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let name of names ;trackBy: trackId">
+                    <td><a [routerLink]="['/name', name.id, 'view']">{{ name.id }}</a></td>
+                    <td>{{ name.firstName }}</td>
+                    <td>{{ name.lastName }}</td>
+                    <td>{{ name.middleName }}</td>
+                    <td>{{ name.preferedName }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/name', name.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/name', name.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(name)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

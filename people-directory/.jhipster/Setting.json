@@ -1,0 +1,29 @@
+{
+    "name": "Setting",
+    "fields": [
+        {
+            "fieldName": "memberVisible",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "selfAdd",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "allowSubGroup",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20200331010300",
+    "entityTableName": "setting",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "embedded": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
