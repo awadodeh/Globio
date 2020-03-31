@@ -1,0 +1,43 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.globio.peopledirectory",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.8.0",
+    "applicationType": "monolith",
+    "baseName": "peopledirectory",
+    "packageName": "com.globio.peopledirectory",
+    "packageFolder": "com/globio/peopledirectory",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NDZiMDIzYzY0ZmFmYTk1MjJlODk2MWY1YWU1ZWYxZWQ3NWRkYWMwMTdiYzIyMTA5ZTJjYzA1NTcwMjVhMmFhMmRmNWUwMzVkN2I1NGVkNTZjZmZkNGRmOWQwOWRlZTQ0ZjNkNTBiYmRmMjlkYWUyMDhlNGM1YjIwOWU2YzY1YmY=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "darkly",
+    "clientThemeVariant": "primary",
+    "creationTimestamp": 1585615170727,
+    "testFrameworks": ["gatling"],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": ["en"],
+    "blueprints": []
+  }
+}
