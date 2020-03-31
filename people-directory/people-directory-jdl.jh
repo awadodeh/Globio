@@ -1,0 +1,100 @@
+/**
+Globio Inc.
+
+This is system design for people directory.
+**/
+
+entity Group {
+	// unique universal groupID
+	groupID String,
+    groupName String,
+    groupDescription String,
+    groupOwner String,
+    lastUpdated Date
+    //contact Contact,
+    //settings Setting,
+    //members Person,
+    //parentGroup Group
+}
+
+// A person is associated with:
+// Group, Location, Name, Department
+entity Person {
+    email String,
+    phoneNumber String,
+    image String
+}
+
+entity Contact {
+	email String,
+    // The groupID for which this contact belongs
+    ownerGroup String
+}
+
+entity Setting {
+	memberVisible Boolean,
+    selfAdd Boolean,
+    allowSubGroup Boolean
+}
+
+entity Name {
+	firstName String,
+    lastName String,
+    middleName String,
+    preferedName String
+}
+
+entity Location {
+	streetAddress String,
+	postalCode String,
+	city String,
+	stateProvince String
+}
+
+entity Department {
+	departmentName String required,
+    departmentID String required
+}
+
+enum Language {
+    ENGLISH
+}
+
+relationship OneToMany {
+	Person{contact} to Group
+}
+
+relationship OneToOne {
+	Person{location} to Location,
+    Person{department} to Department,
+    Person{contact} to Contact,
+    Person{name} to Name,
+}
+
+
+relationship OneToMany {
+	Group{members} to Person
+}
+
+relationship OneToOne {
+	Group{contact} to Contact,
+    Group{setting} to Setting,
+    Group{parent} to Group
+}
+
+relationship OneToOne {
+	Department{location} to Location
+}
+
+
+// Set pagination options
+paginate Group, Person with infinite-scroll
+paginate Job with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+
